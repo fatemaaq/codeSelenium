@@ -1,0 +1,39 @@
+Selenium waits:We want our page to wait before it process other command. All these are Dynamic waits
+Three dufferent types of wait we have in elenium
+1. Implicit wait
+2. Explicit wait
+3. Fluent wait
+
+Implicit wait: 
+You can only add once.
+waits for all the elements of the page to load
+driver.manage().implicitlyWait(30, TimeOut, SECONDS);
+
+Explicit wait:
+waits for asynch elements also 
+also wait for a given condition
+constructor syntax: WebElementDriver wait = new WebDriverElement(driver, 30);
+Function syntax: wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Home")));
+alert method syntax: wait.until(ExpectedConditions.alertIsPresent());
+
+Fluent wait: (eg: a score board of any sport which gets updated by every few sec) ---> in such cases you can use Fluent wait
+syntax:
+
+Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+     .withTimeout(30, TimeUnit.SECONDS)
+     .pollingEvery(30, TimeUnit.SECONDS)
+     .ignoring(NoSuchElement--------------------
+     
+     
+     
+isSelected ---->
+isDisplayed---->   All these methods can be selected in order to check if th element is present or not.
+isEnabled ----->
+ example: 
+      if(driver.findElement(By.id("male")).isSelected()) {
+          driver.findElement(By.name("Submit").click());
+          }
+      else {
+         driver.findElement(by.id("male").click());
+         }
+

@@ -1,0 +1,54 @@
+
+1:50 PM: XPATH --> Absolute, Relative
+
+Absolute: /html/body/div[1]/div[1]/div/div/div[2]/div[3]/form/div[1]/div/input[1]
+   Should always start from root node
+   
+Relative: //*[@id="username"] --> can be started from any node
+
+//TAGNAME[(@ATTRIBUTE ="VALUE")]
+
+//input[(@id = 'lname')]
+
+200+ different methods --> W3c recommendation
+
+//Dynamic xpath
+Operators
+
+//*[contains(@id,'Lead')] --> partial matching
+//th[contains(@id='content_wrap')]
+//div[ends-with(@id,'Experience')]
+//div[starts-with(@id,'Experience')]
+//input[(@id='username') or (@type = 'xyz')]
+//input[(@id='username') and (@type = 'email')]
+
+Xpath axes mathods
+Follwing
+//input[(@name = 'pw')]//following::input[1]
+//input[(@name = 'pw')]//following::input[(@id ='Login')]
+Preceding
+Ancestor
+Child
+//div[(@id= 'pwcaps')]//child::img
+following-sibling and preceding-sibling
+//fieldset//input[(@id = 'login_startUrl')]//preceding-sibling::input
+parent
+self
+descendant
+
+Path Expression:
+//fieldset//input ---> 18 elements
+//fieldset//input(18)---> will identify last in the list
+//fieldset//input[last()]---> last element
+//fieldset//input[last() -3]----> last elemnt -3
+//div | //input | // form ---> match any of the tag
+//input //mouse[price > 10] ---> example to show open mouse in amazon website with price less than 10 dollars
+//fieldset // input[position() mod 2=1]----> return all odd numbered elements
+
+
+
+
+
+
+(//input)[25]
+
