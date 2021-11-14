@@ -9,41 +9,37 @@ import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
-	  
-	
-	//How to initialize dyanamic browser configuration
+
+	// How to initialize dyanamic browser configuration
 	public static WebDriver driver;
-	
+
 	public void getDriver(String browserName) {
-		String Browsers = browserName.toLowerCase();
-		switch (Browsers) {
+		String browsers = browserName.toLowerCase();
+		switch (browsers) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			break;
-			
+
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 			break;
-			
+
 		case "safari":
 			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
 			break;
-		
+
 		case "edge":
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
-			
 			break;
-			
+
 		default:
-		driver = null;
-			}
-	
+			driver = null;
+		}
+
 	}
-	
-	
 
 }
