@@ -1,0 +1,22 @@
+
+Lets say we have 5 different classes (Below is the order for execution of Annotations in TestNg 
+
+@BeforeSuite ---->1
+@beforeTest ---->1
+@BeforeClass ---->5
+@BeforeGroups depends on the number of specific groups
+@BeforeMethods ----> depends on number of @Test in one class
+@Test ----> once for itself
+@AfetrMethods
+@AfterGroups
+@AfetrClass
+@AfterTest
+@AfterSuite
+
+Headles mode: Browser with GUI----> 60%
+
+How do you run all testcases collectively?
+.xml
+for eg: Smoke has 40 cases---> smoke.xml
+for eg: Regression has 20 cases-----? regression.xml
+

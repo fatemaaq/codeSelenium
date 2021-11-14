@@ -1,0 +1,16 @@
+Git--> D Version control tool, SVN----> VCS
+
+command line ---> 
+DVCS ---> Distributed Version Control System
+
+local: Each and every can have their own local copy
+remote: central repository remote
+
+Git and Github
+Git--->local repo (local)----> 
+Github---> central repo 
+
+Install Git from https://git-scm.com/download/mac or windows
+Check if installed using git--version 
+Login to Github: github.com
+Sign up or sign in

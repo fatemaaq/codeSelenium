@@ -1,0 +1,8 @@
+Log4j"
+
+logs can be printed to a console, they can be saved in a fine, can be in database.
+Whenever we create reports, it difficult to enter and define each and every log. 
+But log4j have : WARN, INFO, DEBOG.ERROR,FATEL which can be associated with logs
+
+Componenets of Log 4j
+1) Logger: logger object should be created inside class which requires log4j
