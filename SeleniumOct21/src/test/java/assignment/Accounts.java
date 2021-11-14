@@ -69,15 +69,15 @@ public class Accounts {
 
 	}
 
-	@Test(enabled = false, groups = "salesforce")
+	@Test(enabled = true, groups = "salesforce")
 	public void TC12() {
 		driver.findElement(By.id("Account_Tab")).click();
 		driver.findElement(By.id("lexNoThanks")).click();
 		driver.findElement(By.id("tryLexDialogX")).click();
 
 		Select dropDown = new Select(driver.findElement(By.name("fcf"))); // ---> this will click on the view drop down list
-		dropDown.selectByIndex(4); // ---> It will click on the desired field in the drop down menu
-
+		dropDown.selectByIndex(4); // ---> It will click on the desired field in the drop down menu which is personal account in this case that we created as new earlier
+		driver.findElement(By.xpath("/html/body/div[1]/div[2]/table/tbody/tr/td[2]/div[2]/form/div/span/span[2]/a[1]")).click();
 	}
 
 	@Test(enabled = false)
