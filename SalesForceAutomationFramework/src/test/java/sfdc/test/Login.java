@@ -4,9 +4,6 @@ package sfdc.test;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import sfdc.pages.LoginPage;
 
 public class Login extends BaseTest {
 	
@@ -35,11 +32,10 @@ public class Login extends BaseTest {
 	public static void fetchWebsite() throws IOException, InterruptedException {
 		System.out.println("In fetchWebsite");
 		driver.get(dataUtil.readAccounts("prod.url"));
-		loginPage = new LoginPage(driver);
 		basicUtil.waitForElement(loginPage.eUsername);
 	}
 
-	public static void loginToApp() throws IOException {
+	public static boolean loginToApp() throws IOException {
 		Assert.assertTrue(isLoginPageDisplayed());
 		
 		basicUtil.isElementVisible(loginPage.eUsername);
@@ -48,6 +44,11 @@ public class Login extends BaseTest {
 		basicUtil.isElementVisible(loginPage.ePassword);
 		basicUtil.sendText(dataUtil.readAccounts("prod.password"), loginPage.ePassword);
 		basicUtil.clickOnElement(loginPage.eLoginButton);
+		System.out.println("Login button clicked");
+		if(basicUtil.waitForElement(homePage.eHomeTab))
+			return true;
+		else
+			return false;
 	}
 	
 	public static boolean isLoginPageDisplayed() {

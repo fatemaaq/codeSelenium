@@ -23,6 +23,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import sfdc.configs.TestConstants;
+import sfdc.pages.HomePage;
 import sfdc.pages.LoginPage;
 import sfdc.utilities.BasicUtilities;
 import sfdc.utilities.DataUtilities;
@@ -36,6 +37,7 @@ public class BaseTest {
 	public static DataUtilities dataUtil = new DataUtilities();
 	public static BasicUtilities basicUtil = new BasicUtilities();
 	public static LoginPage loginPage = null;	
+	public static HomePage homePage = null;
 
 	static long startTime=0;
 	static long endTime = 0;
@@ -49,8 +51,10 @@ public class BaseTest {
 		initializeLogging();
 		initializeReports();
 //		initializeDriver(browserName, false);
-		initializeDriver("chrome", false);
-		
+		initializeDriver("firefox", false);
+
+		loginPage = new LoginPage(driver);
+		homePage = new HomePage(driver);
 	}
 
 	public void initializeDriver(String browserName, boolean enableHeadlessMode) {

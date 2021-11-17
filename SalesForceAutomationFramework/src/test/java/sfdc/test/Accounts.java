@@ -50,12 +50,13 @@ public class Accounts extends BaseTest{
 	@Test(enabled = false, groups = "salesforce")
 	public void TC12() {
 //		test = extent.createTest("TC12");
-//		basicUtil.clickOnElement(accountsPage.eAccountTab);
-//		basicUtil.isElementVisible(accountsPage.eErrorPrompt);
-//		basicUtil.clickOnElement(accountsPage.eErrorPrompt);
-//		basicUtil.isElementVisible(accountsPage.eCancelError);
-//		basicUtil.clickOnElement(accountsPage.eCancelError);
-//
+		basicUtil.clickOnElement(accountsPage.eAccountTab);
+		if (basicUtil.isElementVisible(accountsPage.eErrorPrompt)) {
+			basicUtil.clickOnElement(accountsPage.eErrorPrompt);
+			if (basicUtil.isElementVisible(accountsPage.eCancelError))
+				basicUtil.clickOnElement(accountsPage.eCancelError);
+		}	
+		
 //		basicUtil.selectElementFromDropDown(accountsPage.eViewName, 4);
 
 ////		Select dropDown = new Select(driver.findElement(By.name("fcf"))); // ---> this will click on the view drop down list
@@ -73,16 +74,13 @@ public class Accounts extends BaseTest{
 	@Test(enabled = true, groups= "salesforce")
 	public void TC13() throws InterruptedException {
 		basicUtil.clickOnElement(accountsPage.eAccountTab);
-		if(basicUtil.isElementVisible(accountsPage.eErrorPrompt)){
-		basicUtil.clickOnElement(accountsPage.eErrorPrompt);
-		System.out.println("wow");
-		} if (basicUtil.isElementVisible(accountsPage.eCancelError)) {
-		basicUtil.clickOnElement(accountsPage.eCancelError); 
-		}else 
-		{System.out.println("I am out");}
-
-		
-
+		if (basicUtil.isElementVisible(accountsPage.eErrorPrompt)) {
+			basicUtil.clickOnElement(accountsPage.eErrorPrompt);
+			System.out.println("wow");
+			if (basicUtil.isElementVisible(accountsPage.eCancelError)) {
+				basicUtil.clickOnElement(accountsPage.eCancelError);
+			}
+		}
 		
 
 	}

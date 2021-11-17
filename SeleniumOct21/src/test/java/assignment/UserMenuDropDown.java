@@ -174,18 +174,6 @@ public class UserMenuDropDown {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//html[1]/body[1]")).sendKeys("Hello");
 	
-		
-		
-		
-		
-	//	/html/body/div/div/div/div[2]/form/div/input[1]
-
-		
-		
-
-		
-		
-		
 	}
 	
 	
