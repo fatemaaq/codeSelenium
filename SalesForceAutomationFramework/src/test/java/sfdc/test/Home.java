@@ -1,5 +1,5 @@
 package sfdc.test;
 
-public class Home {
+public class Home extends BaseTest {
 
 }

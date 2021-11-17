@@ -1,39 +1,24 @@
 package sfdc.test;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.IOException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeMethod;
+import sfdc.pages.AccountsPage;
 
 public class Accounts extends BaseTest{
-
+	
+	AccountsPage accountsPage;
+	
 	@BeforeMethod(onlyForGroups = "salesforce")
-	public void OpenSalesForce() throws InterruptedException {
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		driver.get("https://login.salesforce.com/");
-		driver.manage().window().maximize();
-//		Thread.sleep(1000);
-		driver.findElement(By.name("username")).sendKeys("fatemaaq@gmail.com");
-//		Thread.sleep(1000);
-		driver.findElement(By.id("password")).sendKeys("FainFain12");
-//		Thread.sleep(1000);
-		
-		// driver.findElement(By.xpath("//*[@id= 'login']/a/span")).click();---> this
-		// approach is not working
-		WebElement login = driver.findElement(By.id("Login"));
-		login.click();
-	}
+	public void OpenSalesForce() throws InterruptedException, IOException {
+			System.out.println("In open sales force");
+			Login.fetchWebsite();
+			Login.loginToApp();
+			accountsPage = new AccountsPage(driver);
+		}
 
 	@Test(enabled = false)
 	public void TC10() throws InterruptedException {
@@ -62,25 +47,47 @@ public class Accounts extends BaseTest{
 
 	}
 
-	@Test(enabled = true, groups = "salesforce")
+	@Test(enabled = false, groups = "salesforce")
 	public void TC12() {
-		driver.findElement(By.id("Account_Tab")).click();
-		driver.findElement(By.id("lexNoThanks")).click();
-		driver.findElement(By.id("tryLexDialogX")).click();
+//		test = extent.createTest("TC12");
+//		basicUtil.clickOnElement(accountsPage.eAccountTab);
+//		basicUtil.isElementVisible(accountsPage.eErrorPrompt);
+//		basicUtil.clickOnElement(accountsPage.eErrorPrompt);
+//		basicUtil.isElementVisible(accountsPage.eCancelError);
+//		basicUtil.clickOnElement(accountsPage.eCancelError);
+//
+//		basicUtil.selectElementFromDropDown(accountsPage.eViewName, 4);
 
-		Select dropDown = new Select(driver.findElement(By.name("fcf"))); // ---> this will click on the view drop down list
-		dropDown.selectByIndex(4); // ---> It will click on the desired field in the drop down menu which is personal account in this case that we created as new earlier
-		driver.findElement(By.xpath("/html/body/div[1]/div[2]/table/tbody/tr/td[2]/div[2]/form/div/span/span[2]/a[1]")).click();
+////		Select dropDown = new Select(driver.findElement(By.name("fcf"))); // ---> this will click on the view drop down list
+////		dropDown.selectByIndex(4); // ---> It will click on the desired field in the drop down menu which is personal account in this case that we created as new earlier
+//		basicUtil.selectElementFromDropDown(accountsPage.viewName, 4);
+//		
+//		driver.findElement(By.xpath("//span//a[last()-1]")).click();
+		
+//		test.log(Status.INFO,"clicked on a edit button on Accounts page");
+		
+//		basicUtil.selectElementFromDropDown(eUserName,"sdffsd");
+		
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true, groups= "salesforce")
 	public void TC13() throws InterruptedException {
+		basicUtil.clickOnElement(accountsPage.eAccountTab);
+		if(basicUtil.isElementVisible(accountsPage.eErrorPrompt)){
+		basicUtil.clickOnElement(accountsPage.eErrorPrompt);
+		System.out.println("wow");
+		} if (basicUtil.isElementVisible(accountsPage.eCancelError)) {
+		basicUtil.clickOnElement(accountsPage.eCancelError); 
+		}else 
+		{System.out.println("I am out");}
+
+		
 
 		
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false, groups = "salesforce")
 	public void TC14() {
 		System.out.println("logged out");
 

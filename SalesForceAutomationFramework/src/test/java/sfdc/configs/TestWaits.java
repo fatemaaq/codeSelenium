@@ -1,4 +1,4 @@
-package sdfc.configs;
+package sfdc.configs;
 
 public class TestWaits {
 	

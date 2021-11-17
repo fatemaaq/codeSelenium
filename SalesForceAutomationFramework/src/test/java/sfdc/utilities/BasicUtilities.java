@@ -1,20 +1,24 @@
 package sfdc.utilities;
 
+import java.io.File;
+
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import sdfc.configs.TestWaits;
+import sfdc.configs.TestWaits;
+import sfdc.test.BaseTest;
 
 
 //This class has all the reusable functions of nature "Interactable with the web element"
 public class BasicUtilities {
-	
-	RemoteWebDriver driver;
 	
 	public void clickOnElement (WebElement element) {
 		element.click();
@@ -70,21 +74,35 @@ public class BasicUtilities {
 	/* This function would only put the mouse pointer on the given particular element 
 	 */
 	public void moveFocusOntoElement (WebElement element) {
-		Actions action = new Actions (driver);
+		Actions action = new Actions(BaseTest.driver);
 		action.moveToElement(element).build().perform();
 	}
 	
 	/* This function will create wait for the web element for defined time  
 	 * time is defined in a new class 'TestWaits'
 	 */
-	public void waitForElement(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, TestWaits.WAIT_FOR_ELEMENT);
-		wait.until(ExpectedConditions.visibilityOf(element));
+	public boolean waitForElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(BaseTest.driver, TestWaits.WAIT_FOR_ELEMENT);
+		try {
+			wait.until(ExpectedConditions.visibilityOf(element));
+			return true;
+		} catch (TimeoutException e) {
+			return false;
+		}
+		
 	}
 	
-	
-	
-	
+	/* This function will capture a screenshot and attach it to the destination given in the path
+	 */
+	public String getScreenCapture(WebDriver driver) {
+		String path ="";
+		
+		TakesScreenshot screenshot = (TakesScreenshot) driver;
+		File source = screenshot.getScreenshotAs(OutputType.FILE);
+		File destination = new File("");
+		return path;
+				
+	}
 	
 }	
 		
