@@ -21,7 +21,12 @@ import sfdc.test.BaseTest;
 public class BasicUtilities {
 	
 	public void clickOnElement (WebElement element) {
-		element.click();
+		try {
+			element.click();
+		} catch(Exception e) {
+			System.out.println("Cannot click: "+e.getMessage());
+		}
+		
 	}
 
 	public void sendText(String text, WebElement element) {
@@ -103,6 +108,17 @@ public class BasicUtilities {
 		return path;
 				
 	}
+	
+	public void contextClickOnElement(WebDriver driver,WebElement element) {
+		  Actions action = new Actions(driver);
+		  action.click(element).build().perform();
+		 
+		 }
+	
+	public void clearText(WebElement element) {
+		element.clear();
+	}
+	
 	
 }	
 		

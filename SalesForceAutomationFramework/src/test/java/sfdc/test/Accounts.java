@@ -2,6 +2,8 @@ package sfdc.test;
 
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
+
 import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -48,8 +50,8 @@ public class Accounts extends BaseTest{
 	}
 
 	@Test(enabled = false, groups = "salesforce")
-	public void TC12() {
-//		test = extent.createTest("TC12");
+	public void TC12() throws InterruptedException {
+		//test = extent.createTest("TC12"); -->please check this
 		basicUtil.clickOnElement(accountsPage.eAccountTab);
 		if (basicUtil.isElementVisible(accountsPage.eErrorPrompt)) {
 			basicUtil.clickOnElement(accountsPage.eErrorPrompt);
@@ -57,37 +59,84 @@ public class Accounts extends BaseTest{
 				basicUtil.clickOnElement(accountsPage.eCancelError);
 		}	
 		
-//		basicUtil.selectElementFromDropDown(accountsPage.eViewName, 4);
-
-////		Select dropDown = new Select(driver.findElement(By.name("fcf"))); // ---> this will click on the view drop down list
-////		dropDown.selectByIndex(4); // ---> It will click on the desired field in the drop down menu which is personal account in this case that we created as new earlier
-//		basicUtil.selectElementFromDropDown(accountsPage.viewName, 4);
-//		
-//		driver.findElement(By.xpath("//span//a[last()-1]")).click();
-		
-//		test.log(Status.INFO,"clicked on a edit button on Accounts page");
-		
-//		basicUtil.selectElementFromDropDown(eUserName,"sdffsd");
-		
+		basicUtil.selectElementFromDropDown(accountsPage.eViewName, 4);
+		System.out.println("I selected dropdown with value");
+		Thread.sleep(3000);
+		basicUtil.clickOnElement(accountsPage.eEdit);
+		test.log(Status.INFO,"clicked on an edit button on Accounts page");
+		basicUtil.selectElementFromDropDown(accountsPage.eField, 1);
+		//basicUtil.selectElementFromDropDown(accountsPage.eField,"Account Name");
+		Thread.sleep(2000);
+		basicUtil.selectElementFromDropDown(accountsPage.eOperator,3);
+		basicUtil.sendText("a", accountsPage.eValue);
+		//few more step left (action)
 	}
 
-	@Test(enabled = true, groups= "salesforce")
+	@Test(enabled = false, groups= "salesforce")
 	public void TC13() throws InterruptedException {
 		basicUtil.clickOnElement(accountsPage.eAccountTab);
 		if (basicUtil.isElementVisible(accountsPage.eErrorPrompt)) {
 			basicUtil.clickOnElement(accountsPage.eErrorPrompt);
-			System.out.println("wow");
-			if (basicUtil.isElementVisible(accountsPage.eCancelError)) {
+			if (basicUtil.isElementVisible(accountsPage.eCancelError))
 				basicUtil.clickOnElement(accountsPage.eCancelError);
-			}
-		}
+		}	
 		
-
+		basicUtil.selectElementFromDropDown(accountsPage.eViewName, 4);
+		System.out.println("I selected accounts on homepage");
+		if(basicUtil.isElementVisible(accountsPage.eMergeTools))
+			basicUtil.clickOnElement(accountsPage.eMergeTools);
+		else
+			System.out.println("something is not right");
+		basicUtil.sendText("United Oil", accountsPage.eMergeField);
+		basicUtil.clickOnElement(accountsPage.eFindAccounts);
+		
+		if(basicUtil.isElementSelected(accountsPage.eFirstOption)) {
+			System.out.println("First element is already selected");
+		}else 
+		{
+			basicUtil.clickOnElement(accountsPage.eFirstOption);
+		}
+		if(basicUtil.isElementSelected(accountsPage.eSecondOption)) {
+			System.out.println("Second element is already selected");
+		}else 
+		{
+			basicUtil.clickOnElement(accountsPage.eSecondOption);
+		}
+		basicUtil.clickOnElement(accountsPage.eNext);
+		basicUtil.clickOnElement(accountsPage.eNextSecondPage);
+		
+		driver.switchTo().alert().dismiss();
+		
+		
+		
+		
+		
 	}
 
 	@Test(enabled = false, groups = "salesforce")
-	public void TC14() {
-		System.out.println("logged out");
+	public void TC14() throws InterruptedException {
+		basicUtil.clickOnElement(accountsPage.eAccountTab);
+		if (basicUtil.isElementVisible(accountsPage.eErrorPrompt)) {
+			basicUtil.clickOnElement(accountsPage.eErrorPrompt);
+			if (basicUtil.isElementVisible(accountsPage.eCancelError))
+				basicUtil.clickOnElement(accountsPage.eCancelError);		
+		}	
+		basicUtil.clickOnElement(accountsPage.eAccounts30days);
+		//driver.switchTo().alert().dismiss();
+		basicUtil.clickOnElement(accountsPage.eDateFrom);
+		basicUtil.clickOnElement(accountsPage.eTodaysDateFrom);
+		
+		basicUtil.clickOnElement(accountsPage.eDateTo);
+		basicUtil.clickOnElement(accountsPage.eTodaysDateFrom);
+		
+		basicUtil.clickOnElement(accountsPage.eSave);
+		
+		basicUtil.sendText("TC14 reprt", accountsPage.eRprtName);
+		basicUtil.sendText("TC14", accountsPage.eRprtUniqueName);
+		Thread.sleep(2000);
+		basicUtil.clickOnElement(accountsPage.eSaveAndRunReport);
+	
+		System.out.println("Saved and Run Report");
 
 	}
 
