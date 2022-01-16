@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage extends BasePage {
 
 	public LoginPage(WebDriver driver) {
+		System.out.println("LoginPage object created");
 		PageFactory.initElements(driver, this);
 	}
 	
@@ -22,6 +23,9 @@ public class LoginPage extends BasePage {
 	
 	@FindBy(id = "exception")
 	public WebElement eErrorMessage;
+	
+	//@FindBy (name= "fcf")
+	//public WebElement eLeadsDd;
 	
 
 }

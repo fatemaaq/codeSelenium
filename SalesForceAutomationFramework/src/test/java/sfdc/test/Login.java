@@ -29,15 +29,17 @@ public class Login extends BaseTest {
 //	
 //	}
 	
-	public static void fetchWebsite() throws IOException, InterruptedException {
+	public static void fetchWebsite() throws IOException {
 		System.out.println("In fetchWebsite");
 		driver.get(dataUtil.readAccounts("prod.url"));
 		basicUtil.waitForElement(loginPage.eUsername);
 	}
 
 	public static boolean loginToApp() throws IOException {
+
+		System.out.println("Started loginToApp");
 		Assert.assertTrue(isLoginPageDisplayed());
-		
+
 		basicUtil.isElementVisible(loginPage.eUsername);
 //		test.log(Status.INFO,"Username entered");
 		basicUtil.sendText(dataUtil.readAccounts("prod.username"), loginPage.eUsername);
@@ -45,19 +47,27 @@ public class Login extends BaseTest {
 		basicUtil.sendText(dataUtil.readAccounts("prod.password"), loginPage.ePassword);
 		basicUtil.clickOnElement(loginPage.eLoginButton);
 		System.out.println("Login button clicked");
-		if(basicUtil.waitForElement(homePage.eHomeTab))
+		if (basicUtil.waitForElement(homePage.eHomeTab)) {
+			System.out.println("Login completed");
 			return true;
-		else
+		}
+		else {
+			System.out.println("Login issues");
 			return false;
+		}
 	}
 	
 	public static boolean isLoginPageDisplayed() {
 		if (BaseTest.basicUtil.waitForElement(BaseTest.loginPage.eUsername)) {
+			System.out.println("Login page is on display");
 			return true;
 		} else {
+			System.out.println("Login page is not displayed");
 			return false;	
 		}
 	}
+	
+	
 
 }
 //Later the new test case has been created here which can use all the reusable funtions.
