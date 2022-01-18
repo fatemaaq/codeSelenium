@@ -5,23 +5,37 @@ import java.util.Scanner;
 public class SalaryCalculator {
 
 	
-	public static void empGrossSalary(int numberOfHours, int ratePerHour ) {
+	public static double empGrossSalary(int numberOfHours, int ratePerHour, int noOfLeaves ) {
 		
+		if(numberOfHours < 0) {
+			return -1;
+		}
 		
-		int grossSalary = numberOfHours * ratePerHour;
+		if(ratePerHour < 0) {
+			return -1;
+		}
 		
-		System.out.println(grossSalary);
+		int unpaidTime = noOfLeaves * ratePerHour;
+		double grossSalary = numberOfHours * ratePerHour;
+		return (grossSalary * 52) - unpaidTime;
 	}
+	
+		
 	
 	
 	public static void main(String[] args) {
-		System.out.println("Please provide your number of hours");
+		System.out.println("Please provide your number of hours: ");
 		Scanner input = new Scanner(System.in);
-		int empNumberOfHours = input.nextInt();
-		System.out.println("Please provide rate per hour");
+		int numberOfHours = input.nextInt();
+		System.out.println("Please provide rate per hour: ");
 		int ratePerHr = input.nextInt();
+		System.out.println("Enter numner of days taken for leaves: ");
+		int noOfLeaves = input.nextInt();
 		
-		empGrossSalary(empNumberOfHours, ratePerHr);
+		double fullGrossSalary = empGrossSalary(numberOfHours, ratePerHr, noOfLeaves);
+		System.out.println(fullGrossSalary);
+		
+		
 		
 		
 		
